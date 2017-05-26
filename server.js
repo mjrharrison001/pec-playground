@@ -42,10 +42,10 @@ app.listen(app.get('port'), function() {
   console.log('PEC Playground running on port: ', app.get('port'));
 });
 
-var key = process.env.G_KEY;
+var key = process.env.G_KEY || 'AIzaSyDX4a7ppdimXP4Tny0UCOmvPW7xBiPyFc4';
 var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
-  + '/json?location=44.0003,-77.2505&radius=500&type=restaurant&'
-  + 'keyword=cruise&key='
+  + '/json?location=44.0003,-77.2505&radius=20000&type=restaurant&'
+  + 'keyword=&key='
   + key;
 
 app.get('/diners', function(req, res) {
@@ -73,6 +73,7 @@ app.get('/diners', function(req, res) {
       var err_msg = {
         'msg': 'error reaching API'
       };
+      console.log(baseUrl);
       res.send(JSON.stringify(err_msg));
     }
 

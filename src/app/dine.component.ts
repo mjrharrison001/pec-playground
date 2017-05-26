@@ -15,8 +15,8 @@ import { DinersService }            from './diners.service';
               <table class="table table-bordered">
               <tr><th>Name</th><th>Email</th><th>Edit</th><th>Delete</th></tr>
               <tr *ngFor="let dine of diners">
+                <td><img alt="Store Image" src="{{dine.icon}}"></td>
                 <td>{{ dine.name }}</td>
-                <td>{{ dine.email }}</td>
                 <td><a><i class="glyphicon glyphicon-edit"></i></a></td>
                 <td><a><i class="glyphicon glyphicon-remove"></i></a></td>
               </tr>
