@@ -1,7 +1,9 @@
 // server.js
-const express = require('express');
-const app = express();
-const path = require('path');
+const express =   require('express');
+const app =       express();
+const path =      require('path');
+var request  =    require('request');
+var bodyParser =  require('body-parser');
 
 /**USE WHEN PRODUCTION - SSL**/
 // If an incoming request uses
@@ -26,18 +28,55 @@ const path = require('path');
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
+app.set('port', (process.env.PORT || 5000));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // Start the app by listening on the default
 // Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(app.get('port'), function() {
+  console.log('PEC Playground running on port: ', app.get('port'));
+});
 
 var key = process.env.G_KEY;
-var baseUrls = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
+var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
   + '/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&'
   + 'keyword=cruise&key='
   + key;
 
 app.get('/diners', function(req, res) {
-  res.send(key);
+  var diners_token = [];
+  var url = baseUrl;
+  var options = {
+    method: 'GET',
+    jar : true,
+    json: true,
+    url: url
+  }
+  request(options, function (err, response, body) {
+    if (err) {
+      console.error('error posting json: ', err);
+      throw err;
+    }
+    var headers = response.headers;
+    var statusCode = response.statusCode;
+    res.setHeader('Content-Type', 'application/json');
+
+    if (statusCode == 200)
+      res.send(JSON.stringify(body.results));
+
+    else{
+      var err_msg = {
+        'msg': 'error reaching API'
+      };
+      res.send(JSON.stringify(err_msg));
+    }
+
+  });
 });
 
 // For all GET requests, send back index.html
