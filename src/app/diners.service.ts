@@ -5,11 +5,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DinersService {
-  private _key = 'AIzaSyDX4a7ppdimXP4Tny0UCOmvPW7xBiPyFc4';
-  private _baseUrls = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
-    + '/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&'
-    + 'keyword=cruise&key='
-    + this._key;
+  private _baseUrls = 'https://pec-playground.herokuapp.com/diners';
 
   constructor(private _http: Http) { }
 

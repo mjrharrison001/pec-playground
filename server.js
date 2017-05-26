@@ -44,7 +44,7 @@ app.listen(app.get('port'), function() {
 
 var key = process.env.G_KEY;
 var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
-  + '/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&'
+  + '/json?location=44.0003,-77.2505&radius=500&type=restaurant&'
   + 'keyword=cruise&key='
   + key;
 
