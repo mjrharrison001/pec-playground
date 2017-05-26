@@ -42,42 +42,102 @@ app.listen(app.get('port'), function() {
   console.log('PEC Playground running on port: ', app.get('port'));
 });
 
-var key = process.env.G_KEY || 'AIzaSyDX4a7ppdimXP4Tny0UCOmvPW7xBiPyFc4';
+var key = process.env.G_KEY || 'AIzaSyDc4KKiAWzquReABbLqj9ya2LE7v02N2Hw';
 var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
   + '/json?location=44.0003,-77.2505&radius=20000&type=restaurant&'
   + 'keyword=&key='
   + key;
 
+var detailedStoreInformation = []; //array of information for each store
 app.get('/diners', function(req, res) {
-  var diners_token = [];
-  var url = baseUrl;
-  var options = {
-    method: 'GET',
-    jar : true,
-    json: true,
-    url: url
+  //data not yet loaded into memory
+  if(detailedStoreInformation.length <= 0){
+    var placeId = [];
+    var url = baseUrl;
+    var options = {
+      method: 'GET',
+      jar : true,
+      json: true,
+      url: url
+    }
+    request(options, function (err, response, body) {
+      if (err) {
+        console.error('error posting json: ', err);
+        throw err;
+      }
+      var headers = response.headers;
+      var statusCode = response.statusCode;
+
+      if (statusCode == 200){
+        //get all place Ids and store them in placeId
+        for (var i = 0; i < body.results.length; i++){
+          placeId.push(body.results[i].place_id);
+        }
+        //loop through each placeId and get detailed store information
+        var lockCounter = placeId.length;
+
+        for(var i = 0; i < placeId.length; i++){
+          /**detailed store information API call BEGIN**/
+          url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid='
+            + placeId[i]
+            + '&key='
+            + key;
+
+          var options = {
+            method: 'GET',
+            jar : true,
+            json: true,
+            url: url
+          }
+          request(options, function (err, response, bodyD) {
+            if (err) {
+              console.error('error posting json: ', err);
+              throw err;
+            }
+            var headers = response.headers;
+            var statusCode = response.statusCode;
+            //var bodyData = JSON.stringify(bodyD.result);
+            if (statusCode == 200){
+              var data = {
+                'name':             bodyD.result.name,
+                'location':         bodyD.result.vicinity,
+                'url':              bodyD.result.url,
+                'rating':           bodyD.result.rating,
+                'price':            bodyD.result.prince_level,
+                'numberOfReviews':  bodyD.result.reviews.length,
+                'hours':            bodyD.result.weekday_text,
+                'icon':             bodyD.result.icon,
+                'phoneNumber':      bodyD.result.formatted_phone_number
+                // 'photoUrl':         'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
+                //   +  bodyD.result.photos
+                //   + '&key='
+                //   + key
+              };
+              console.log(bodyD.result.photos);
+              detailedStoreInformation.push(data);
+              lockCounter--;
+              if (lockCounter <= 0){
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(detailedStoreInformation));
+              }
+            }
+          });
+          /**detailed store information API call END**/
+        }
+      }
+      else{
+        var err_msg = {
+          'msg': 'error reaching API'
+        };
+        console.log(baseUrl);
+        res.send(JSON.stringify(err_msg));
+      }
+    });
   }
-  request(options, function (err, response, body) {
-    if (err) {
-      console.error('error posting json: ', err);
-      throw err;
-    }
-    var headers = response.headers;
-    var statusCode = response.statusCode;
+  else{ //data already loaded since last push
     res.setHeader('Content-Type', 'application/json');
-
-    if (statusCode == 200)
-      res.send(JSON.stringify(body.results));
-
-    else{
-      var err_msg = {
-        'msg': 'error reaching API'
-      };
-      console.log(baseUrl);
-      res.send(JSON.stringify(err_msg));
-    }
-
-  });
+    res.send(JSON.stringify(detailedStoreInformation));
+  }
 });
 
 // For all GET requests, send back index.html

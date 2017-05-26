@@ -17,8 +17,8 @@ import { DinersService }            from './diners.service';
               <tr *ngFor="let dine of diners">
                 <td><img alt="Store Image" src="{{dine.icon}}"></td>
                 <td>{{ dine.name }}</td>
-                <td><a><i class="glyphicon glyphicon-edit"></i></a></td>
-                <td><a><i class="glyphicon glyphicon-remove"></i></a></td>
+                <td>{{dine.rating}}</td>
+                <td>{{dine.vicinity}}</td>
               </tr>
               </table>
             </div>
