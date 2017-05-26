@@ -30,6 +30,16 @@ app.use(express.static(__dirname + '/dist'));
 // Heroku port
 app.listen(process.env.PORT || 8080);
 
+private _key = 'AIzaSyDX4a7ppdimXP4Tny0UCOmvPW7xBiPyFc4';
+private _baseUrls = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
+  + '/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&'
+  + 'keyword=cruise&key='
+  + this._key;
+
+app.get('/diners', function(req, res) {
+  res.send("test");
+}
+
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 app.get('/*', function(req, res) {
