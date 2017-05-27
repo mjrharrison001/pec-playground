@@ -9,7 +9,7 @@ export class DinersService {
 
   constructor(private _http: Http) { }
 
-  getUsers() {
+  getDiners() {
       return this._http.get(this._baseUrls)
           .map(res => res.json());
   }

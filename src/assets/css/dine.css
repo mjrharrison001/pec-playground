@@ -1,0 +1,21 @@
+h1{
+  text-align: center;
+}
+
+img {
+  object-fit: cover;
+  width:242px;
+  height:200px;
+}
+
+
+.thumbnail{
+  min-height: 455px;
+}
+
+
+.btn-bottom{
+  bottom: 21;
+  position: absolute;
+  margin-bottom: 15;
+}

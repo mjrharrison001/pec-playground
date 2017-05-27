@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="row">
+    <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-20x"></i>
+    <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="{{dine.photoUrl}}" alt="{{dine.icon}}">
+        <div class="caption">
+          <h3>{{ dine.name }}</h3>
+          <p *ngIf="dine.rating >= 0 && dine.rating < 1">
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          </p>
+          <p *ngIf="dine.rating >= 1 && dine.rating < 2">
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          </p>
+          <p *ngIf="dine.rating >= 2 && dine.rating < 3">
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          </p>
+          <p *ngIf="dine.rating >= 3 && dine.rating < 4">
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star-empty"></i>
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          </p>
+          <p *ngIf="dine.rating >= 4 && dine.rating < 5">
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          </p>
+          <p *ngIf="dine.rating >= 5">
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i>
+          <i class="glyphicon glyphicon-star"></i> | {{ getRating() }}
+          </p>
+          <p>{{ dine.location }}</p>
+          <p>Call: {{ dine.phoneNumber }}</p>
+          <p><a target="_blank" href="{{ dine.url }}" class="btn btn-primary btn-bottom" role="button">Directions</a></p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -6,36 +6,19 @@ import { DinersService }            from './diners.service';
 
 @Component({
   selector: 'dine-page',
-  template: `
-            <div class="container">
-            <h1>Restaurants</h1>
-            <div class="row">
-            <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-20x"></i>
-            <div class="col-md-12">
-              <table class="table table-bordered">
-              <tr><th>Name</th><th>Email</th><th>Edit</th><th>Delete</th></tr>
-              <tr *ngFor="let dine of diners">
-                <td><img alt="Store Image" src="{{dine.icon}}"></td>
-                <td>{{ dine.name }}</td>
-                <td>{{dine.rating}}</td>
-                <td>{{dine.location}}</td>
-              </tr>
-              </table>
-            </div>
-            </div>
-            </div>
-            `,
-    styleUrls: ['../assets/css/map.css'],
+  templateUrl: '../assets/views/dine.html',
+  styleUrls: ['../assets/css/dine.css']
 })
 export class DineComponent {
   isLoading = true;
   diners = [];
+  rating = 0;
 
   constructor(private _dinersService : DinersService){
   }
 
   ngOnInit(){
-    this._dinersService.getUsers()
+    this._dinersService.getDiners()
       .subscribe(res => {
         console.log(res);
         this.diners = res;
@@ -43,5 +26,9 @@ export class DineComponent {
       null,
       () => {this.isLoading = false}
       );
+  }
+
+  getRating() {
+    return (Math.floor(Math.random() * 20) + 1);
   }
 }
