@@ -18,7 +18,7 @@ import { DinersService }            from './diners.service';
                 <td><img alt="Store Image" src="{{dine.icon}}"></td>
                 <td>{{ dine.name }}</td>
                 <td>{{dine.rating}}</td>
-                <td>{{dine.vicinity}}</td>
+                <td>{{dine.location}}</td>
               </tr>
               </table>
             </div>

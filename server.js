@@ -98,6 +98,7 @@ app.get('/diners', function(req, res) {
             var statusCode = response.statusCode;
             //var bodyData = JSON.stringify(bodyD.result);
             if (statusCode == 200){
+
               var data = {
                 'name':             bodyD.result.name,
                 'location':         bodyD.result.vicinity,
@@ -108,12 +109,15 @@ app.get('/diners', function(req, res) {
                 'hours':            bodyD.result.weekday_text,
                 'icon':             bodyD.result.icon,
                 'phoneNumber':      bodyD.result.formatted_phone_number
-                // 'photoUrl':         'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
-                //   +  bodyD.result.photos
-                //   + '&key='
-                //   + key
               };
-              console.log(bodyD.result.photos);
+              if (typeof bodyD.result.photos != 'undefined'){
+                var photoId = bodyD.result.photos[0].photo_reference;
+                data.photoUrl = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
+                  +  photoId
+                  + '&key='
+                  + key;
+              }
+
               detailedStoreInformation.push(data);
               lockCounter--;
               if (lockCounter <= 0){
