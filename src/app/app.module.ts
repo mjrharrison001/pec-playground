@@ -4,6 +4,8 @@ import { CommonModule }     from '@angular/common';
 import { FormsModule }      from '@angular/forms';
 import { HttpModule }       from '@angular/http';
 import { JsonpModule }      from '@angular/http';
+import { AlertModule }      from 'ngx-bootstrap';
+import { CollapseModule }   from 'ngx-bootstrap/collapse';
 
 import { routing }          from './app.routing';
 
@@ -26,7 +28,9 @@ import { DinersService }    from './diners.service';
       apiKey: 'AIzaSyDX4a7ppdimXP4Tny0UCOmvPW7xBiPyFc4',
       libraries: ['places']
     }),
-    JsonpModule
+    JsonpModule,
+    AlertModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   declarations: [
     AppComponent,
