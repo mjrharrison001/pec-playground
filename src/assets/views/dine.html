@@ -1,5 +1,29 @@
 <div class="container">
-
+  <div class="row">
+    <div class="col-sm-12 col-md-12 center-div">
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default btn-padding-lr">
+          <i class="glyphicon glyphicon-list"></i>
+          <div class="view-btn-text">
+            List
+          </div>
+        </button>
+        <button type="button" class="btn btn-default btn-padding-lr">
+          <i class="glyphicon glyphicon-map-marker"></i>
+          <div class="view-btn-text">
+            Map
+          </div>
+        </button>
+        <button type="button" class="btn btn-default btn-padding-lr"
+          (click)="sortList()">
+          <i class="glyphicon glyphicon-sort"></i>
+          <div class="view-btn-text">
+            Sort
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
     <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
@@ -12,42 +36,42 @@
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
           </p>
           <p *ngIf="dine.rating >= 1 && dine.rating < 2">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
           </p>
           <p *ngIf="dine.rating >= 2 && dine.rating < 3">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
           </p>
           <p *ngIf="dine.rating >= 3 && dine.rating < 4">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
           </p>
           <p *ngIf="dine.rating >= 4 && dine.rating < 5">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ getRating() }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
           </p>
           <p *ngIf="dine.rating >= 5">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
-          <i class="glyphicon glyphicon-star"></i> | {{ getRating() }}
+          <i class="glyphicon glyphicon-star"></i> | {{ dine.numberOfReviews }}
           </p>
           <p>{{ dine.location }}</p>
           <p>Call: {{ dine.phoneNumber }}</p>

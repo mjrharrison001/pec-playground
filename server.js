@@ -96,7 +96,6 @@ app.get('/diners', function(req, res) {
             }
             var headers = response.headers;
             var statusCode = response.statusCode;
-            //var bodyData = JSON.stringify(bodyD.result);
             if (statusCode == 200){
 
               var data = {
@@ -131,7 +130,6 @@ app.get('/diners', function(req, res) {
                   var statusCode = response.statusCode;
                   var uri = response.request.uri.href;
                   data.photoUrl = uri;
-                  console.log(uri);
 
                   detailedStoreInformation.push(data);
                   lockCounter--;
@@ -142,7 +140,7 @@ app.get('/diners', function(req, res) {
                 });
               }
               else{
-                data.photoUrl = bodyD.result.icon;
+                data.photoUrl = 'https://cdn.pixabay.com/photo/2014/12/02/03/12/wineglass-553467_960_720.jpg';
 
                 detailedStoreInformation.push(data);
                 lockCounter--;

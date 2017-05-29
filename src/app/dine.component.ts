@@ -12,7 +12,11 @@ import { DinersService }            from './diners.service';
 export class DineComponent {
   isLoading = true;
   diners = [];
-  rating = 0;
+  /**
+  * true -> sort by rating
+  * false -> sort by number of reviews
+  **/
+  private _sort = true;
 
   constructor(private _dinersService : DinersService){
   }
@@ -20,7 +24,13 @@ export class DineComponent {
   ngOnInit(){
     this._dinersService.getDiners()
       .subscribe(res => {
-        console.log(res);
+        /**
+        * Number of reviews capped at 5
+        * generating fake random values
+        **/
+        for (var i = 0; i < res.length; i++){
+          res[i].numberOfReviews = this.getRating();
+        }
         this.diners = res;
       },
       null,
@@ -29,7 +39,10 @@ export class DineComponent {
   }
 
   getRating() {
-    this.rating = Math.floor(Math.random() * 20) + 1;
-    return this.rating;
+    return Math.floor(Math.random() * 20) + 1;
+  }
+
+  sortList(){
+    this.diners.sort();
   }
 }
