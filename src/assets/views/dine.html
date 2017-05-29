@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row">
-    <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-20x"></i>
+    <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
     <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
       <div class="thumbnail">
         <img src="{{dine.photoUrl}}" alt="{{dine.icon}}">

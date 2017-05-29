@@ -29,6 +29,7 @@ export class DineComponent {
   }
 
   getRating() {
-    return (Math.floor(Math.random() * 20) + 1);
+    this.rating = Math.floor(Math.random() * 20) + 1;
+    return this.rating;
   }
 }

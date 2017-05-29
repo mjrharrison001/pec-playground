@@ -42,7 +42,7 @@ app.listen(app.get('port'), function() {
   console.log('PEC Playground running on port: ', app.get('port'));
 });
 
-var key = process.env.G_KEY || 'AIzaSyDc4KKiAWzquReABbLqj9ya2LE7v02N2Hw';
+var key = process.env.G_KEY;
 var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
   + '/json?location=44.0003,-77.2505&radius=20000&type=restaurant&'
   + 'keyword=&key='
@@ -112,17 +112,34 @@ app.get('/diners', function(req, res) {
               };
               if (typeof bodyD.result.photos != 'undefined'){
                 var photoId = bodyD.result.photos[0].photo_reference;
-                data.photoUrl = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
+                var photoUrl_token = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
                   +  photoId
                   + '&key='
                   + key;
-              }
+                var options = {
+                  method: 'GET',
+                  jar : true,
+                  json: true,
+                  url: photoUrl_token
+                }
+                request(options, function (err, response, bodyP) {
+                  if (err) {
+                    console.error('error posting json: ', err);
+                    throw err;
+                  }
+                  var headers = response.headers;
+                  var statusCode = response.statusCode;
+                  var uri = response.request.uri.href;
+                  data.photoUrl = uri;
+                  console.log(uri);
 
-              detailedStoreInformation.push(data);
-              lockCounter--;
-              if (lockCounter <= 0){
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(detailedStoreInformation));
+                  detailedStoreInformation.push(data);
+                  lockCounter--;
+                  if (lockCounter <= 0){
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(detailedStoreInformation));
+                  }
+                });
               }
             }
           });
