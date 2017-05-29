@@ -141,6 +141,16 @@ app.get('/diners', function(req, res) {
                   }
                 });
               }
+              else{
+                data.photoUrl = bodyD.result.icon;
+
+                detailedStoreInformation.push(data);
+                lockCounter--;
+                if (lockCounter <= 0){
+                  res.setHeader('Content-Type', 'application/json');
+                  res.send(JSON.stringify(detailedStoreInformation));
+                }
+              }
             }
           });
           /**detailed store information API call END**/
