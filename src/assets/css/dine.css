@@ -25,6 +25,7 @@ img {
 }
 
 .btn-padding-lr{
+  font-size: 0.9em;
   padding-left: 1.5em;
   padding-right: 1.5em;
 }
@@ -51,27 +52,37 @@ img {
   padding-bottom: 20px;
 }
 
+.margin-under-sort{
+  margin-bottom: 60px;
+}
+
+.sort-category{
+}
+
+.thick-border-left{
+  border-left-width: 1.5px;
+}
+
+.thick-border-right{
+  border-right-width: 1.5px;
+}
+
 @media (max-width: 700px) {
   .view-btn-text{
+    display: none;
     font-size: 0.9em;
     margin-left: 0.3em;
     margin-right: 0.3em;
   }
 
-  .glyphicon{
-    font-size: 0.9em;
+  .gly-menu{
+    font-size: 1.5em;
   }
 
   .btn-padding-lr{
     padding-left: 1.0em;
     padding-right: 1.0em;
-    min-width: 33.33%;
-  }
-
-  .btn-padding-lr-sort{
-    padding-left: 0.4em;
-    padding-right: 0.4em;
-    min-width: 50%;
+    min-width: 25%;
   }
 
   .btn-group-fw{

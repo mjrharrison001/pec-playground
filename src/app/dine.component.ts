@@ -16,9 +16,9 @@ export class DineComponent {
   * true -> sort by rating
   * false -> sort by number of reviews
   **/
-  private _sort = true;
+  sortBy = true;
   private _undefinedLogo = '../assets/img/WINE_01-1.jpg';
-  sortView = true;
+  listMapView = true;
 
   constructor(private _dinersService : DinersService){
   }
@@ -37,6 +37,7 @@ export class DineComponent {
           }
         }
         this.diners = res;
+        this.updateSortRating();
       },
       null,
       () => {this.isLoading = false}
@@ -44,19 +45,17 @@ export class DineComponent {
   }
 
   getRating() {
-    return Math.floor(Math.random() * 20) + 1;
+    return Math.floor(Math.random() * 40) + 1;
   }
 
-  sortList(){
-    //sort by rating
-    if(this._sort){
-      this.diners.sort(function(a, b){return b.rating-a.rating});
-      this._sort = !this._sort
-    }
-    //sort by number of reviews
-    else{
-      this.diners.sort(function(a, b){return b.numberOfReviews-a.numberOfReviews});
-      this._sort = !this._sort
-    }
+  updateSortRating(){
+    this.sortBy = true;
+    this.diners.sort(function(a, b){return b.rating-a.rating});
   }
+
+  updateSortReviewed(){
+    this.sortBy = false;
+    this.diners.sort(function(a, b){return b.numberOfReviews-a.numberOfReviews});
+  }
+
 }
