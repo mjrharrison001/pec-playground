@@ -140,7 +140,7 @@ app.get('/diners', function(req, res) {
                 });
               }
               else{
-                data.photoUrl = 'https://cdn.pixabay.com/photo/2014/12/02/03/12/wineglass-553467_960_720.jpg';
+                data.photoUrl = './assets/img/WINE_01-1.jpg';
 
                 detailedStoreInformation.push(data);
                 lockCounter--;

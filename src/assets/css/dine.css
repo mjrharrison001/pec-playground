@@ -36,5 +36,23 @@ img {
   margin-right: 0.5em;
 }
 @media (max-width: 700px) {
-  
+  .view-btn-text{
+    font-size: 0.9em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+  }
+
+  .glyphicon{
+    font-size: 0.9em;
+  }
+
+  .btn-padding-lr{
+    padding-left: 1.0em;
+    padding-right: 1.0em;
+    min-width: 33.33%;
+  }
+
+  .btn-group-fw{
+    width: 100%;
+  }
 }
