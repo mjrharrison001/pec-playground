@@ -1,28 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-12 center-div">
-      <div class="btn-group btn-group-fw" role="group" aria-label="...">
-        <button type="button" class="btn btn-default btn-padding-lr active">
-          <i class="glyphicon glyphicon-list"></i>
-          <div class="view-btn-text">
-            List
+  <div *ngIf="sortView">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 center-div">
+          <div class="btn-group btn-group-fw" role="group" aria-label="...">
+            <button type="button" class="btn btn-default btn-padding-lr">
+              <i class="glyphicon glyphicon-list"></i>
+              <div class="view-btn-text">
+                List
+              </div>
+            </button>
+            <button type="button" class="btn btn-default btn-padding-lr">
+              <i class="glyphicon glyphicon-map-marker"></i>
+              <div class="view-btn-text">
+                Map
+              </div>
+            </button>
+            <button type="button" class="btn btn-default btn-padding-lr active"
+              (click)="sortList()">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+              <div class="view-btn-text">
+                Sort
+              </div>
+            </button>
           </div>
-        </button>
-        <button type="button" class="btn btn-default btn-padding-lr">
-          <i class="glyphicon glyphicon-map-marker"></i>
-          <div class="view-btn-text">
-            Map
-          </div>
-        </button>
-        <button type="button" class="btn btn-default btn-padding-lr"
-          (click)="sortList()">
-          <i class="glyphicon glyphicon-sort"></i>
-          <div class="view-btn-text">
-            Sort
-          </div>
-        </button>
+        </div>
       </div>
-    </div>
+      <div class="row margin-top-sort">
+        <div class="col-sm-12 col-md-12 center-div">
+          <div class="btn-group btn-group-fw" role="group" aria-label="...">
+            <button type="button" class="btn btn-default btn-padding-lr-sort">
+              <i class="glyphicon glyphicon-star"></i>
+              <div class="view-btn-text">
+                Highest Rating
+              </div>
+            </button>
+            <button type="button" class="btn btn-default btn-padding-lr-sort">
+              <i class="glyphicon glyphicon-user"></i>
+              <div class="view-btn-text">
+                Most reviewed
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
   </div>
   <div class="row">
     <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>

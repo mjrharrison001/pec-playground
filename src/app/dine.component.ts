@@ -18,6 +18,7 @@ export class DineComponent {
   **/
   private _sort = true;
   private _undefinedLogo = '../assets/img/WINE_01-1.jpg';
+  sortView = true;
 
   constructor(private _dinersService : DinersService){
   }

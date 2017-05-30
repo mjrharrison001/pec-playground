@@ -29,12 +29,28 @@ img {
   padding-right: 1.5em;
 }
 
+.btn-padding-lr-sort{
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
 .view-btn-text{
   font-size: 1.3em;
   display: inline-block;
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+.margin-top-sort{
+  margin-top: 20px;
+}
+
+.jumbotron{
+  margin-bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 @media (max-width: 700px) {
   .view-btn-text{
     font-size: 0.9em;
@@ -50,6 +66,12 @@ img {
     padding-left: 1.0em;
     padding-right: 1.0em;
     min-width: 33.33%;
+  }
+
+  .btn-padding-lr-sort{
+    padding-left: 1.0em;
+    padding-right: 1.0em;
+    min-width: 50%;
   }
 
   .btn-group-fw{
