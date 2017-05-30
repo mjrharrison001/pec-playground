@@ -17,6 +17,7 @@ export class DineComponent {
   * false -> sort by number of reviews
   **/
   private _sort = true;
+  private _undefinedLogo = '../assets/img/WINE_01-1.jpg';
 
   constructor(private _dinersService : DinersService){
   }
@@ -30,6 +31,9 @@ export class DineComponent {
         **/
         for (var i = 0; i < res.length; i++){
           res[i].numberOfReviews = this.getRating();
+          if (res[i].photoUrl == null){
+            res[i].photoUrl = this._undefinedLogo;
+          }
         }
         this.diners = res;
       },
@@ -43,6 +47,15 @@ export class DineComponent {
   }
 
   sortList(){
-    this.diners.sort();
+    //sort by rating
+    if(this._sort){
+      this.diners.sort(function(a, b){return b.rating-a.rating});
+      this._sort = !this._sort
+    }
+    //sort by number of reviews
+    else{
+      this.diners.sort(function(a, b){return b.numberOfReviews-a.numberOfReviews});
+      this._sort = !this._sort
+    }
   }
 }

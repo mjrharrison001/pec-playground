@@ -140,7 +140,7 @@ app.get('/diners', function(req, res) {
                 });
               }
               else{
-                data.photoUrl = 'assets/img/WINE_01-1.jpg';
+                data.photoUrl = null;
 
                 detailedStoreInformation.push(data);
                 lockCounter--;
