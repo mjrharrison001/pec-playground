@@ -107,16 +107,17 @@
       [disableDefaultUI]="true"
       [zoomControl]="false"
       [streetViewControl]="false">
-      <custom-map-marker
+      <sebm-google-map-marker
           *ngFor="let cluster of diners; let i = index"
-          [markersInCluster]="cluster.markers"
-          [addressId]="cluster.id"
-          [lat]="cluster.lat"
-          [lng]="cluster=.lng"
-          [label]="cluster.name"
-          [isViewed]="true"
+          [latitude]="cluster.lat"
+          [longitude]="cluster.lng"
+          [title]="cluster.name"
+          [label]="aName"
+          [iconUrl]="cluster.icon"
+          [visible]="true"
+          [zIndex]="i"
           (markerClick)="onMarkerClick($event)">
-      </custom-map-marker>
+      </sebm-google-map-marker>
     </sebm-google-map>
     <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
       Map
