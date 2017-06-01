@@ -18,10 +18,11 @@ export class DineComponent {
   **/
   sortBy = true;
   private _undefinedLogo = '../assets/img/WINE_01-1.jpg';
+  markerIconUrl = '../assets/img/marker.png';
   listMapView = true;
   lat: number = 44.0003;
   lng: number = -77.2505;
-  zoom: number = 1;
+  zoom: number = 12;
 
   constructor(private _dinersService : DinersService){
   }
@@ -67,6 +68,12 @@ export class DineComponent {
 
   listMapViewUpdateMap(){
     this.listMapView = !this.listMapView;
+  }
+
+  onMarkerClick(lat, lng){
+    this.lat = lat;
+    this.lng = lng;
+    this.zoom = 18;
   }
 
 }

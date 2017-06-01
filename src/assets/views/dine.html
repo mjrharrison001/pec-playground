@@ -20,9 +20,7 @@
           </button>
           <button type="button" class="btn btn-default btn-padding-lr sort-category thick-border-left"
             (click)="updateSortRating()"
-            [class.active]="sortBy"
-            [class.reduce-opacity]="!listMapView"
-            [class.disabled]="!listMapView">
+            [class.active]="sortBy">
             <i class="glyphicon glyphicon-star gly-menu"></i>
             <div class="view-btn-text">
               Top Rating
@@ -30,9 +28,7 @@
           </button>
           <button type="button" class="btn btn-default btn-padding-lr sort-category"
             (click)="updateSortReviewed()"
-            [class.active]="!sortBy"
-            [class.reduce-opacity]="!listMapView"
-            [class.disabled]="!listMapView">
+            [class.active]="!sortBy">
             <i class="glyphicon glyphicon-user gly-menu"></i>
             <div class="view-btn-text">
               Most Reviewed
@@ -99,28 +95,47 @@
   </div>
   <div *ngIf="!listMapView" class="row">
     <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
+    <div class="row">
+      <div class="col-md-4  list-max-height">
+        <div *ngFor="let dine of diners" class="media"
+          (click)="onMarkerClick(dine.lat, dine.lng)">
+          <div class="media-left">
+            <img class="media-object" src="{{dine.photoUrl}}" alt="img">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{dine.name}}</h4>
+            <p>
+            {{ dine.location }}<br>
+            Call: {{ dine.phoneNumber }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <sebm-google-map
+          [latitude]="lat"
+          [longitude]="lng"
+          [zoom]="zoom"
+          [disableDefaultUI]="true"
+          [zoomControl]="false"
+          [streetViewControl]="false"
+          [zoomControl]="true"
+          [disableDefaultUI]="true"
+          [scrollwheel]="true">
 
-    <sebm-google-map
-      [latitude]="lat"
-      [longitude]="lng"
-      [zoom]="zoom"
-      [disableDefaultUI]="true"
-      [zoomControl]="false"
-      [streetViewControl]="false">
-      <sebm-google-map-marker
-          *ngFor="let cluster of diners; let i = index"
-          [latitude]="cluster.lat"
-          [longitude]="cluster.lng"
-          [title]="cluster.name"
-          [label]="aName"
-          [iconUrl]="cluster.icon"
-          [visible]="true"
-          [zIndex]="i"
-          (markerClick)="onMarkerClick($event)">
-      </sebm-google-map-marker>
-    </sebm-google-map>
-    <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
-      Map
+          <sebm-google-map-marker
+              *ngFor="let cluster of diners; let i = index"
+              [latitude]="cluster.lat"
+              [longitude]="cluster.lng"
+              [title]="cluster.name"
+              [label]="aName"
+              [iconUrl]="markerIconUrl"
+              [visible]="true"
+              [zIndex]="i"
+              (markerClick)="onMarkerClick(cluster.lat, cluster.lng)">
+          </sebm-google-map-marker>
+        </sebm-google-map>
+      </div>
     </div>
 
   </div>
