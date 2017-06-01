@@ -96,6 +96,7 @@ app.get('/diners', function(req, res) {
             }
             var headers = response.headers;
             var statusCode = response.statusCode;
+            //console.log(bodyD.result);
             if (statusCode == 200){
 
               var data = {
@@ -107,7 +108,10 @@ app.get('/diners', function(req, res) {
                 'numberOfReviews':  bodyD.result.reviews.length,
                 'hours':            bodyD.result.weekday_text,
                 'icon':             bodyD.result.icon,
-                'phoneNumber':      bodyD.result.formatted_phone_number
+                'phoneNumber':      bodyD.result.formatted_phone_number,
+                'lat':              bodyD.result.geometry.location.lat,
+                'lng':              bodyD.result.geometry.location.lng,
+                'id':               bodyD.result.id
               };
               if (typeof bodyD.result.photos != 'undefined'){
                 var photoId = bodyD.result.photos[0].photo_reference;

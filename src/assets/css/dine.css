@@ -67,6 +67,14 @@ img {
   border-right-width: 1.5px;
 }
 
+.reduce-opacity{
+  opacity: 0.5;
+}
+
+.sebm-google-map-container{
+  height: 700px; 
+}
+
 @media (max-width: 700px) {
   .view-btn-text{
     display: none;

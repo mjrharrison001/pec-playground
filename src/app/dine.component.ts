@@ -19,6 +19,9 @@ export class DineComponent {
   sortBy = true;
   private _undefinedLogo = '../assets/img/WINE_01-1.jpg';
   listMapView = true;
+  lat: number = 44.0003;
+  lng: number = -77.2505;
+  zoom: number = 1;
 
   constructor(private _dinersService : DinersService){
   }
@@ -56,6 +59,14 @@ export class DineComponent {
   updateSortReviewed(){
     this.sortBy = false;
     this.diners.sort(function(a, b){return b.numberOfReviews-a.numberOfReviews});
+  }
+
+  listMapViewUpdateList(){
+    this.listMapView = !this.listMapView;
+  }
+
+  listMapViewUpdateMap(){
+    this.listMapView = !this.listMapView;
   }
 
 }

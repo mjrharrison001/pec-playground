@@ -3,14 +3,16 @@
       <div class="col-sm-12 col-md-12 center-div">
         <div class="btn-group btn-group-fw" role="group" aria-label="...">
           <button type="button" class="btn btn-default btn-padding-lr"
-            [class.active]="listMapView">
+            [class.active]="listMapView"
+            (click)="listMapViewUpdateList()">
             <i class="glyphicon glyphicon-list gly-menu"></i>
             <div class="view-btn-text">
               List
             </div>
           </button>
           <button type="button" class="btn btn-default btn-padding-lr thick-border-right"
-            [class.active]="!listMapView">
+            [class.active]="!listMapView"
+            (click)="listMapViewUpdateMap()">
             <i class="glyphicon glyphicon-map-marker gly-menu"></i>
             <div class="view-btn-text">
               Map
@@ -18,7 +20,9 @@
           </button>
           <button type="button" class="btn btn-default btn-padding-lr sort-category thick-border-left"
             (click)="updateSortRating()"
-            [class.active]="sortBy">
+            [class.active]="sortBy"
+            [class.reduce-opacity]="!listMapView"
+            [class.disabled]="!listMapView">
             <i class="glyphicon glyphicon-star gly-menu"></i>
             <div class="view-btn-text">
               Top Rating
@@ -26,7 +30,9 @@
           </button>
           <button type="button" class="btn btn-default btn-padding-lr sort-category"
             (click)="updateSortReviewed()"
-            [class.active]="!sortBy">
+            [class.active]="!sortBy"
+            [class.reduce-opacity]="!listMapView"
+            [class.disabled]="!listMapView">
             <i class="glyphicon glyphicon-user gly-menu"></i>
             <div class="view-btn-text">
               Most Reviewed
@@ -35,7 +41,7 @@
         </div>
       </div>
     </div>
-  <div class="row">
+  <div *ngIf="listMapView" class="row">
     <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
     <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
       <div class="thumbnail">
@@ -90,4 +96,30 @@
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="!listMapView" class="row">
+    <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
+
+    <sebm-google-map
+      [latitude]="lat"
+      [longitude]="lng"
+      [zoom]="zoom"
+      [disableDefaultUI]="true"
+      [zoomControl]="false"
+      [streetViewControl]="false">
+      <custom-map-marker
+          *ngFor="let cluster of diners; let i = index"
+          [markersInCluster]="cluster.markers"
+          [addressId]="cluster.id"
+          [lat]="cluster.lat"
+          [lng]="cluster=.lng"
+          [label]="cluster.name"
+          [isViewed]="true"
+          (markerClick)="onMarkerClick($event)">
+      </custom-map-marker>
+    </sebm-google-map>
+    <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
+      Map
+    </div>
+
   </div>
