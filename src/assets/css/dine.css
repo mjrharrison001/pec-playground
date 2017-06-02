@@ -118,11 +118,11 @@ img {
   }
 
   .sebm-google-map-container{
-    height: 60vh;
+    height: 50vh;
   }
 
   .list-max-height{
-    max-height: 23vh;
+    max-height: 30vh;
     margin-bottom: 20px;
   }
 }
