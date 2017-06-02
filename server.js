@@ -42,7 +42,7 @@ app.listen(app.get('port'), function() {
   console.log('PEC Playground running on port: ', app.get('port'));
 });
 
-var key = process.env.G_KEY || 'AIzaSyDc4KKiAWzquReABbLqj9ya2LE7v02N2Hw';
+var key = process.env.G_KEY;
 var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
   + '/json?location=44.0003,-77.2505&radius=20000&type=restaurant&'
   + 'keyword=&key='
