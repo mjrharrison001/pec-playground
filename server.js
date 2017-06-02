@@ -42,7 +42,7 @@ app.listen(app.get('port'), function() {
   console.log('PEC Playground running on port: ', app.get('port'));
 });
 
-var key = process.env.G_KEY;
+var key = process.env.G_KEY || 'AIzaSyDc4KKiAWzquReABbLqj9ya2LE7v02N2Hw';
 var baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
   + '/json?location=44.0003,-77.2505&radius=20000&type=restaurant&'
   + 'keyword=&key='
@@ -239,7 +239,6 @@ app.get('/shops', function(req, res) {
                 'url':              bodyD.result.url,
                 'rating':           bodyD.result.rating,
                 'price':            bodyD.result.prince_level,
-                'numberOfReviews':  bodyD.result.reviews.length,
                 'hours':            bodyD.result.weekday_text,
                 'icon':             bodyD.result.icon,
                 'phoneNumber':      bodyD.result.formatted_phone_number,
@@ -247,6 +246,12 @@ app.get('/shops', function(req, res) {
                 'lng':              bodyD.result.geometry.location.lng,
                 'id':               bodyD.result.id
               };
+              if (typeof bodyD.result.reviews != 'undefined'){
+                data.numberOfReviews = bodyD.result.reviews.length;
+              }
+              else{
+                data.numberOfReviews = 0;
+              }
               if (typeof bodyD.result.photos != 'undefined'){
                 var photoId = bodyD.result.photos[0].photo_reference;
                 var photoUrl_token = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
@@ -368,7 +373,6 @@ app.get('/wineries', function(req, res) {
                 'url':              bodyD.result.url,
                 'rating':           bodyD.result.rating,
                 'price':            bodyD.result.prince_level,
-                'numberOfReviews':  bodyD.result.reviews.length,
                 'hours':            bodyD.result.weekday_text,
                 'icon':             bodyD.result.icon,
                 'phoneNumber':      bodyD.result.formatted_phone_number,
@@ -376,6 +380,12 @@ app.get('/wineries', function(req, res) {
                 'lng':              bodyD.result.geometry.location.lng,
                 'id':               bodyD.result.id
               };
+              if (typeof bodyD.result.reviews != 'undefined'){
+                data.numberOfReviews = bodyD.result.reviews.length;
+              }
+              else{
+                data.numberOfReviews = 0;
+              }
               if (typeof bodyD.result.photos != 'undefined'){
                 var photoId = bodyD.result.photos[0].photo_reference;
                 var photoUrl_token = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='
