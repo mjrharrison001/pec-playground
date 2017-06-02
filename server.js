@@ -315,8 +315,8 @@ app.get('/shops', function(req, res) {
 var detailedWineInformation = []; //array of information for each store
 app.get('/wineries', function(req, res) {
   baseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch'
-    + '/json?location=44.0003,-77.2505&radius=20000&type=wine&'
-    + 'keyword=&key='
+    + '/json?location=44.0003,-77.2505&radius=20000&'
+    + 'keyword=wine&key='
     + key;
   //data not yet loaded into memory
   if(detailedWineInformation.length <= 0){
