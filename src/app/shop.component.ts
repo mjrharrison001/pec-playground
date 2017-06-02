@@ -2,20 +2,20 @@ import { Component, OnInit }        from '@angular/core';
 import { Observable }               from 'rxjs/Observable';
 import                              'rxjs/add/observable/forkJoin';
 
-import { DinersService }            from './diners.service';
+import { ShopsService }            from './shops.service';
 
 @Component({
-  selector: 'dine-page',
-  templateUrl: '../assets/views/dine.html',
+  selector: 'shop-page',
+  templateUrl: '../assets/views/shop.html',
   styleUrls: ['../assets/css/display.css']
 })
-export class DineComponent implements OnInit {
+export class ShopComponent implements OnInit {
   //view controls
   isLoading               = true;
   sortBy                  = true;
   listMapView             = true;
   //array of data to display
-  diners                  = [];
+  shops                  = [];
   //custom asset links
   private _undefinedLogo  = '../assets/img/WINE_01-1.jpg';
   markerIconUrl           = '../assets/img/marker.png';
@@ -25,11 +25,11 @@ export class DineComponent implements OnInit {
   zoom:       number      = 12;
   highZoom:   number      = 18;
 
-  constructor(private _dinersService : DinersService){
+  constructor(private _shopsService : ShopsService){
   }
 
   ngOnInit(){
-    this._dinersService.getDiners()
+    this._shopsService.getShops()
       .subscribe(res => {
         /**
         * Number of reviews capped at 5
@@ -41,7 +41,7 @@ export class DineComponent implements OnInit {
             res[i].photoUrl = this._undefinedLogo;
           }
         }
-        this.diners = res;
+        this.shops = res;
         this.updateSortRating();
       },
       null,
@@ -55,12 +55,12 @@ export class DineComponent implements OnInit {
 
   updateSortRating(){
     this.sortBy = true;
-    this.diners.sort(function(a, b){return b.rating-a.rating});
+    this.shops.sort(function(a, b){return b.rating-a.rating});
   }
 
   updateSortReviewed(){
     this.sortBy = false;
-    this.diners.sort(function(a, b){return b.numberOfReviews-a.numberOfReviews});
+    this.shops.sort(function(a, b){return b.numberOfReviews-a.numberOfReviews});
   }
 
   listMapViewUpdateList(){

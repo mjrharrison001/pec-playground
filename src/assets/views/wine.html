@@ -39,56 +39,56 @@
     </div>
   <div *ngIf="listMapView" class="row">
     <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
-    <div *ngFor="let dine of diners" class="col-sm-6 col-md-4">
+    <div *ngFor="let wine of wineries" class="col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img src="{{dine.photoUrl}}" alt="{{dine.icon}}">
+        <img src="{{wine.photoUrl}}" alt="{{wine.icon}}">
         <div class="caption">
-          <h3>{{ dine.name }}</h3>
-          <p *ngIf="dine.rating >= 0 && dine.rating < 1">
+          <h3>{{ wine.name }}</h3>
+          <p *ngIf="wine.rating >= 0 && wine.rating < 1">
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ wine.numberOfReviews }}
           </p>
-          <p *ngIf="dine.rating >= 1 && dine.rating < 2">
+          <p *ngIf="wine.rating >= 1 && wine.rating < 2">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ wine.numberOfReviews }}
           </p>
-          <p *ngIf="dine.rating >= 2 && dine.rating < 3">
+          <p *ngIf="wine.rating >= 2 && wine.rating < 3">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ wine.numberOfReviews }}
           </p>
-          <p *ngIf="dine.rating >= 3 && dine.rating < 4">
+          <p *ngIf="wine.rating >= 3 && wine.rating < 4">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star-empty"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ wine.numberOfReviews }}
           </p>
-          <p *ngIf="dine.rating >= 4 && dine.rating < 5">
+          <p *ngIf="wine.rating >= 4 && wine.rating < 5">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
-          <i class="glyphicon glyphicon-star-empty"></i> | {{ dine.numberOfReviews }}
+          <i class="glyphicon glyphicon-star-empty"></i> | {{ wine.numberOfReviews }}
           </p>
-          <p *ngIf="dine.rating >= 5">
+          <p *ngIf="wine.rating >= 5">
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
           <i class="glyphicon glyphicon-star"></i>
-          <i class="glyphicon glyphicon-star"></i> | {{ dine.numberOfReviews }}
+          <i class="glyphicon glyphicon-star"></i> | {{ wine.numberOfReviews }}
           </p>
-          <p>{{ dine.location }}</p>
-          <p>Call: {{ dine.phoneNumber }}</p>
-          <p><a target="_blank" href="{{ dine.url }}" class="btn btn-primary btn-bottom" role="button">Directions</a></p>
+          <p>{{ wine.location }}</p>
+          <p>Call: {{ wine.phoneNumber }}</p>
+          <p><a target="_blank" href="{{ wine.url }}" class="btn btn-primary btn-bottom" role="button">Directions</a></p>
         </div>
       </div>
     </div>
@@ -98,16 +98,16 @@
     <h1><i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x"></i></h1>
     <div class="row">
       <div class="col-md-4  list-max-height">
-        <div *ngFor="let dine of diners" class="media"
-          (click)="onMarkerClick(dine.lat, dine.lng)">
+        <div *ngFor="let wine of wineries" class="media"
+          (click)="onMarkerClick(wine.lat, wine.lng)">
           <div class="media-left">
-            <img class="media-object" src="{{dine.photoUrl}}" alt="img">
+            <img class="media-object" src="{{wine.photoUrl}}" alt="img">
           </div>
           <div class="media-body">
-            <h4 class="media-heading">{{dine.name}}</h4>
+            <h4 class="media-heading">{{wine.name}}</h4>
             <p>
-            {{ dine.location }}<br>
-            Call: {{ dine.phoneNumber }}
+            {{ wine.location }}<br>
+            Call: {{ wine.phoneNumber }}
             </p>
           </div>
         </div>
@@ -125,7 +125,7 @@
           [scrollwheel]="true">
 
           <sebm-google-map-marker
-              *ngFor="let cluster of diners; let i = index"
+              *ngFor="let cluster of wineries; let i = index"
               [latitude]="cluster.lat"
               [longitude]="cluster.lng"
               [title]="cluster.name"

@@ -17,6 +17,10 @@ import { AgmCoreModule }      from 'angular2-google-maps/core';
 import { SebmGoogleMapMarker }from 'angular2-google-maps/core';
 import { DineComponent }      from './dine.component';
 import { DinersService }      from './diners.service';
+import { ShopComponent }      from './shop.component';
+import { ShopsService }       from './shops.service';
+import { WineComponent }      from './wine.component';
+import { WineriesService }    from './wineries.service';
 
 @NgModule({
   imports: [
@@ -38,10 +42,14 @@ import { DinersService }      from './diners.service';
     NavComponent,
     HomeComponent,
     MapComponent,
-    DineComponent
+    DineComponent,
+    ShopComponent,
+    WineComponent
   ],
   providers: [
-    DinersService
+    DinersService,
+    ShopsService,
+    WineriesService
   ],
   bootstrap:    [ AppComponent ]
 })
